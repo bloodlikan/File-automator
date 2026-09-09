@@ -26,7 +26,7 @@ def configurar_logs():
 
 
 def clasificar_archivo(archivo):
-    """Devuelve la carpeta de destino según el nombre o extensión."""
+    """Devuelve la carpeta de destino segun el nombre o extension."""
     nombre = archivo.name.lower()
     extension = archivo.suffix.lower()
 
@@ -51,12 +51,15 @@ def obtener_destino_disponible(destino):
         return destino
 
     contador = 1
+
     while True:
         nuevo_destino = destino.with_name(
             f"{destino.stem}_{contador}{destino.suffix}"
         )
+
         if not nuevo_destino.exists():
             return nuevo_destino
+
         contador += 1
 
 
@@ -67,7 +70,10 @@ def procesar_archivos():
 
     filas_reporte = []
 
-    archivos = [archivo for archivo in INPUT_DIR.iterdir() if archivo.is_file()]
+    archivos = [
+        archivo for archivo in INPUT_DIR.iterdir()
+        if archivo.is_file()
+    ]
 
     if not archivos:
         print("No hay archivos para procesar dentro de la carpeta input.")
@@ -96,23 +102,23 @@ def procesar_archivos():
             )
 
             logging.info(
-                "Archivo procesado: %s | Categoría: %s | Destino: %s",
+                "Archivo procesado: %s | Categoria: %s | Destino: %s",
                 archivo.name,
                 categoria,
                 destino,
             )
 
-            print(f"✓ {archivo.name} → {categoria}")
+            print(f"[OK] {archivo.name} -> {categoria}")
 
         except Exception as error:
             logging.exception("Error al procesar %s", archivo.name)
-            print(f"✗ Error al procesar {archivo.name}: {error}")
+            print(f"[ERROR] Error al procesar {archivo.name}: {error}")
 
     generar_reporte(filas_reporte)
 
 
 def generar_reporte(filas):
-    """Crea el reporte CSV de la ejecución."""
+    """Crea el reporte CSV de la ejecucion."""
     if not filas:
         return
 
