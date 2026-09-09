@@ -3,7 +3,7 @@
 
 
 Automatizador de archivos creado con Python. Clasifica documentos e imágenes por nombre o extensión, los organiza en carpetas y genera un registro de cada ejecución.
-![Interfaz de FileAutomator](fileautomator-ui.png)
+![Interfaz de FileAutomator](fileautomator.png)
 
 
 \## Funciones
